@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-12-08 水 12:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Xdoplot manual</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="作元研エース 豊田 郁弥" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Xdoplot manual</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf7da8cf">1. xdoplot 基本</a>
+<ul>
+<li><a href="#org351172e">1.1. xdoplot とは</a></li>
+<li><a href="#org03c5ffe">1.2. res ファイルとは</a></li>
+</ul>
+</li>
+<li><a href="#orgc96eed4">2. option</a>
+<ul>
+<li><a href="#orgf363568">2.1. 対数 plot</a></li>
+<li><a href="#orgc369f07">2.2. 横軸，縦軸，あるいは凡例における数式モード</a></li>
+<li><a href="#org684208e">2.3. 凡例の位置調整</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgf7da8cf" class="outline-2">
+<h2 id="orgf7da8cf"><span class="section-number-2">1.</span> xdoplot 基本</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org351172e" class="outline-3">
+<h3 id="org351172e"><span class="section-number-3">1.1.</span> xdoplot とは</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>基本的にはこちらのリンクを参照 <a href="http://www.lsnl.jp/~ohsaki/software/xdoplot">(VIEW)</a></li>
+<li>xdoplot は，res ファイルを eps ファイルに出力する際，用いる．
+<ul class="org-ul">
+<li>psfix-gnuplot にパイプ(|) で渡すことでよりきれいな図が eps ファ
+イルとして出力される．
+<ul class="org-ul">
+<li>| psfix-gnuplot は最悪なくても実行されるが，より beautiful な
+図を作成するため，原則用いるものとする</li>
+<li>ここで，-te はそれぞれ以下を意味する
+<ul class="org-ul">
+<li>- : option のハイフン</li>
+<li>t : 出力先 terminal</li>
+<li>e : 出力先の形式(e は eps を意味する)</li>
+</ul></li>
+<li>基本的に eps ファイルに出力するので，xdoplot のあとに -te はつけるものと覚えても良い</li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="example">
+xdoplot -te hoge.res | psfix-gnuplot -e &gt; hoge.eps
+</pre>
+</div>
+</div>
+<div id="outline-container-org03c5ffe" class="outline-3">
+<h3 id="org03c5ffe"><span class="section-number-3">1.2.</span> res ファイルとは</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>実験結果を図にする際，取得したデータおよび図に関する設定をまとめ
+たファイル
+<ul class="org-ul">
+<li>ヘッダーの部分(ylabel から name: まで) に option を加えることで，
+簡単に図の調整をおこなうことができる</li>
+<li>xlabel: : x 軸のラベル</li>
+<li>ylabel: : y 軸のラベル</li>
+<li>name: 結果の凡例</li>
+</ul></li>
+<li><b><b>注意事項</b></b>
+<ul class="org-ul">
+<li>xlabel: などにおいて，xlabel と : の間にスペースがあるとエラーがでる
+<ul class="org-ul">
+<li>例 : xlabel :  これだとエラーがでる
+<ul class="org-ul">
+<li>→  xlabel:  これが正しい</li>
+</ul></li>
+</ul></li>
+<li>name: の行とその下のデータが書かれてある行に一行スペースがある
+とエラーがでる．そのため，name: の行の直下にデータの行を加える
+必要がある</li>
+</ul></li>
+</ul>
+<pre class="example">
+xlabel: {/Symbol a}
+ylabel: Average running time
+option: set style data linespoints
+option: set xrange [1:10]
+option: set logscale xy
+option: set key right top
+
+name: RRS
+1 6.7351 0.10439201620847635
+2 3.243 0.0306769676554768
+3 2.6334 0.01772314851773313
+4 2.4286 0.014000737426691891
+5 2.3289 0.012421629243975853
+6 2.261 0.011276049739208626
+7 2.2315 0.010923419255021272
+8 2.2089 0.01059034863794446
+9 2.1869 0.010427767573623103
+10 2.1678 0.01012249578021330
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc96eed4" class="outline-2">
+<h2 id="orgc96eed4"><span class="section-number-2">2.</span> option</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgf363568" class="outline-3">
+<h3 id="orgf363568"><span class="section-number-3">2.1.</span> 対数 plot</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>x 軸を対数 plot したいとき</li>
+</ul>
+<pre class="example">
+option: set logscale x
+</pre>
+<ul class="org-ul">
+<li>y 軸を対数 plot したいとき</li>
+</ul>
+<pre class="example">
+option: set logscale y
+</pre>
+<ul class="org-ul">
+<li>xy 軸両方を対数 plot したいとき</li>
+</ul>
+<pre class="example">
+option: set logscale xy
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc369f07" class="outline-3">
+<h3 id="orgc369f07"><span class="section-number-3">2.2.</span> 横軸，縦軸，あるいは凡例における数式モード</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>ギリシャ文字を使いたい
+<ul class="org-ul">
+<li>{/Symbol *} と書くことで，ギリシャ文字が出力される
+<ul class="org-ul">
+<li>例 : {/Symbol a} と書くことで，ギリシャ文字の α が出力される</li>
+<li>今の所これを用いているが，願わくば，tex の数式に近いフォントのも
+のを用いたい</li>
+</ul></li>
+<li>ギリシャ文字一覧 <a href="https://ayapin-film.sakura.ne.jp/Gnuplot/Docs/ps_guide.pdf">(VIEW)</a></li>
+</ul></li>
+<li>下付き文字は，tex と同じで _ および {} を用いることで，{} 内の文
+字が下付き文字として出力される</li>
+</ul>
+<pre class="example">
+例 : xlabel: {/Symbol a}_{b}
+</pre>
+<ul class="org-ul">
+<li>数式モードの斜体にしたい
+<ul class="org-ul">
+<li>{/Helvetica-Oblique *} と書くことで，文字を斜体にすることができる
+<ul class="org-ul">
+<li>{/Helvetica-Oblique k} と書くことで，数式モードの k が出力される</li>
+<li>今の所これを用いているが，願わくば，tex の数式に近いフォントの
+ものを用いたい
+<ul class="org-ul">
+<li>oblique は英語で，斜めという意味</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<pre class="example">
+例 : name: {/Helvetica-Oblique k}
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org684208e" class="outline-3">
+<h3 id="org684208e"><span class="section-number-3">2.3.</span> 凡例の位置調整</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>凡例を複数列に分けたい</li>
+</ul>
+
+<pre class="example">
+例 :
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 作元研エース 豊田 郁弥</p>
+<p class="date">Created: 2021-12-08 水 12:00</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

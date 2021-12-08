@@ -1,0 +1,106 @@
+#+TITLE: Xdoplot manual
+#+AUTHOR: 作元研エース 豊田 郁弥
+#+EMAIL: fumiya.toyoda@kwansei.ac.jp
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+#+HTML_HEAD: <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+#+HTML_HEAD: <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+
+
+* xdoplot 基本
+** xdoplot とは
+  - 基本的にはこちらのリンクを参照 [[http://www.lsnl.jp/~ohsaki/software/xdoplot][(VIEW)]]
+  - xdoplot は，res ファイルを eps ファイルに出力する際，用いる．
+    - psfix-gnuplot にパイプ(|) で渡すことでよりきれいな図が eps ファ
+      イルとして出力される．
+      - | psfix-gnuplot は最悪なくても実行されるが，より beautiful な
+        図を作成するため，原則用いるものとする
+      - ここで，-te はそれぞれ以下を意味する
+	- - : option のハイフン
+	- t : 出力先 terminal
+	- e : 出力先の形式(e は eps を意味する)
+      - 基本的に eps ファイルに出力するので，xdoplot のあとに -te はつけるものと覚えても良い
+  #+BEGIN_SRC
+xdoplot -te hoge.res | psfix-gnuplot -e > hoge.eps
+  #+END_SRC
+** res ファイルとは
+   - 実験結果を図にする際，取得したデータおよび図に関する設定をまとめ
+     たファイル
+     - ヘッダーの部分(ylabel から name: まで) に option を加えることで，
+       簡単に図の調整をおこなうことができる
+     - xlabel: : x 軸のラベル
+     - ylabel: : y 軸のラベル
+     - name: 結果の凡例
+   - **注意事項**
+     - xlabel: などにおいて，xlabel と : の間にスペースがあるとエラーがでる
+       - 例 : xlabel :  これだとエラーがでる
+	 - →  xlabel:  これが正しい
+     - name: の行とその下のデータが書かれてある行に一行スペースがある
+       とエラーがでる．そのため，name: の行の直下にデータの行を加える
+       必要がある
+  #+BEGIN_SRC
+xlabel: {/Symbol a}
+ylabel: Average running time
+option: set style data linespoints
+option: set xrange [1:10]
+option: set logscale xy
+option: set key right top
+
+name: RRS
+1 6.7351 0.10439201620847635
+2 3.243 0.0306769676554768
+3 2.6334 0.01772314851773313
+4 2.4286 0.014000737426691891
+5 2.3289 0.012421629243975853
+6 2.261 0.011276049739208626
+7 2.2315 0.010923419255021272
+8 2.2089 0.01059034863794446
+9 2.1869 0.010427767573623103
+10 2.1678 0.01012249578021330
+   #+END_SRC
+
+* option
+** 対数 plot
+    - x 軸を対数 plot したいとき
+  #+BEGIN_SRC
+option: set logscale x
+  #+END_SRC
+    - y 軸を対数 plot したいとき
+  #+BEGIN_SRC
+option: set logscale y
+  #+END_SRC
+    - xy 軸両方を対数 plot したいとき
+  #+BEGIN_SRC
+option: set logscale xy
+  #+END_SRC
+
+** 横軸，縦軸，あるいは凡例における数式モード
+    - ギリシャ文字を使いたい
+      - {/Symbol *} と書くことで，ギリシャ文字が出力される
+	- 例 : {/Symbol a} と書くことで，ギリシャ文字の α が出力される
+	- 今の所これを用いているが，願わくば，tex の数式に近いフォントのも
+          のを用いたい
+      - ギリシャ文字一覧 [[https://ayapin-film.sakura.ne.jp/Gnuplot/Docs/ps_guide.pdf][(VIEW)]]
+    - 下付き文字は，tex と同じで _ および {} を用いることで，{} 内の文
+      字が下付き文字として出力される
+  #+BEGIN_SRC
+例 : xlabel: {/Symbol a}_{b}
+  #+END_SRC
+  - 数式モードの斜体にしたい
+    - {/Helvetica-Oblique *} と書くことで，文字を斜体にすることができる
+      - {/Helvetica-Oblique k} と書くことで，数式モードの k が出力される
+      - 今の所これを用いているが，願わくば，tex の数式に近いフォントの
+        ものを用いたい
+	- oblique は英語で，斜めという意味
+  #+BEGIN_SRC
+例 : name: {/Helvetica-Oblique k}
+  #+END_SRC
+
+** 凡例の位置調整
+   - 凡例を複数列に分けたい
+
+  #+BEGIN_SRC
+例 :
+  #+END_SRC
